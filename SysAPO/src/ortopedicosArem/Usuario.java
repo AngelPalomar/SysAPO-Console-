@@ -5,17 +5,39 @@ public class Usuario {
 	private int tipoUsuario;
 	private String nombreUsuario;
 	private String apellidoUsuario;
-	private String contraseña;
+	private String contrasena;
 	private String correoUsuario;
 	private String telefonoUsuario;
 	private Direccion direccionUsuario;
 
 	public Usuario() {
-		// TODO Auto-generated constructor stub
+		direccionUsuario = new Direccion();
+	}
+	
+	public Usuario(int idUsuario, int tipoUsuario, String 
+			nombreUsuario, String apellidoUsuario, String contrasena, String correoUsuario,
+			String telefonoUsuario, String calle, String numeroInterior, String numeroExterior, String cp, String colonia,
+			String municipio, String estado) {
+		
+		this.idUsuario = idUsuario;
+		this.tipoUsuario = tipoUsuario;
+		this.nombreUsuario = nombreUsuario;
+		this.apellidoUsuario = apellidoUsuario;
+		this.contrasena = contrasena;
+		this.correoUsuario = correoUsuario;
+		this.telefonoUsuario = telefonoUsuario;
+		
+		direccionUsuario.setCalle(calle);
+		direccionUsuario.setNumeroInterior(numeroInterior);
+		direccionUsuario.setNumeroExterior(numeroExterior);
+		direccionUsuario.setCp(cp);
+		direccionUsuario.setColonia(colonia);
+		direccionUsuario.setMunicipio(municipio);
+		direccionUsuario.setEstado(estado);
 	}
 
 	private void RegistrarUsuario() {
-
+		
 	}
 
 	public int getIdUsuario() {
@@ -50,12 +72,12 @@ public class Usuario {
 		this.apellidoUsuario = apellidoUsuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public String getCorreoUsuario() {
@@ -78,8 +100,24 @@ public class Usuario {
 		return direccionUsuario;
 	}
 
-	public void setDireccionUsuario(Direccion direccionUsuario) {
-		this.direccionUsuario = direccionUsuario;
+	public void setDireccionUsuario(String calle, String numeroInterior, String numeroExterior, String cp, String colonia,
+			String municipio, String estado) {
+		
+		direccionUsuario.setCalle(calle);
+		direccionUsuario.setNumeroInterior(numeroInterior);
+		direccionUsuario.setNumeroExterior(numeroExterior);
+		direccionUsuario.setCp(cp);
+		direccionUsuario.setColonia(colonia);
+		direccionUsuario.setMunicipio(municipio);
+		direccionUsuario.setEstado(estado);
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "> ID de usuario: " + idUsuario + " Tipo de usuario: " + tipoUsuario +  " Nombre: " + 
+	nombreUsuario + " " + apellidoUsuario + " Contraseña: " + contrasena + " E-mail: " + 
+				correoUsuario + " Teléfono: " + telefonoUsuario + " Dirección: "  + direccionUsuario;
 	}
 
 }
