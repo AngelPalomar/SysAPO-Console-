@@ -8,6 +8,23 @@ public class Direccion {
 	private String colonia;
 	private String municipio;
 	private String estado;
+	
+	public Direccion() {
+		
+	}
+	
+	public Direccion(String calle, String numeroInterior, String numeroExterior, String cp, String colonia,
+			String municipio, String estado) {
+
+		setCalle(calle);
+		setNumeroInterior(numeroInterior);
+		setNumeroExterior(numeroExterior);
+		setCp(cp);
+		setColonia(colonia);
+		setMunicipio(municipio);
+		setEstado(estado);
+		
+	}
 	public String getCalle() {
 		return calle;
 	}
