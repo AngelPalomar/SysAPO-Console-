@@ -70,7 +70,7 @@ public class Direccion {
 	
 	@Override
 	public String toString() {
-		return calle + " #" + numeroExterior + "-" + numeroInterior + " " 
+		return "Calle " + calle + " #" + numeroExterior + "-" + numeroInterior + " " 
 	+ colonia + " " + ", " + cp + " " + municipio +
 	", " + estado;
 	}

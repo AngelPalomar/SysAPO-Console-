@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Empleado extends Usuario {
 	protected int tipoEmpleado;
+	
+	public static Empleado empleado;
+	public ArrayList<Empleado> empleados;
 
 	public Empleado() {
 		super();
@@ -21,28 +24,27 @@ public class Empleado extends Usuario {
 
 	}
 
-	public int getTipoEmpleado() {
-		return tipoEmpleado;
-	}
-
+	/**
+	 * @param set tipoEmpleado
+	 */
 	public void setTipoEmpleado(int tipoEmpleado) {
 		this.tipoEmpleado = tipoEmpleado;
 	}
 	
 	/**
-	 * @param empleado
-	 * Clase para agregar empleados predeterminados al programa
+	 * @return get tipoEmpleado
 	 */
-	public void CargarEmpleado(Empleado empleado) {
-		Empleado empleado1 = new Empleado(1, 2, "Cruz Angel", "Palomar Gaytán", "0000", "angelpg.123@hotmail.com",
-				"4427047812", "Calle Ficticia", "404", "2", "76148", "La Falacia", "QRO", "Querétaro", 1);
-		
-		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
-		empleados.add(empleado);
+	public int getTipoEmpleado() {
+		return tipoEmpleado;
 	}
 	
-	public void AgregarEmpleado() {
-
+	public void CargaEmpleado() {
+		empleados = new ArrayList<Empleado>(); //Inicializa el array list de empleados
+	}
+	
+	public void AgregarEmpleado(Empleado empleado) {
+		empleados.add(empleado);
+		System.out.println("¡Empleado agregado con éxito!");
 	}
 
 	public void EliminarEmpleado() {
@@ -54,12 +56,14 @@ public class Empleado extends Usuario {
 	}
 
 	public void ConsultarEmpleado() {
-
+		for (Empleado empleado : empleados) {
+			System.out.println(empleado.toString());
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Tipo de Empleado: " + tipoEmpleado;
+		return super.toString() + " [Tipo de Empleado]: " + tipoEmpleado;
 	}
 
 }

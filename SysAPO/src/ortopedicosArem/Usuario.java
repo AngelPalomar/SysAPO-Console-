@@ -36,10 +36,6 @@ public class Usuario {
 		direccionUsuario.setEstado(estado);
 	}
 
-	private void RegistrarUsuario() {
-		
-	}
-
 	public int getIdUsuario() {
 		return idUsuario;
 	}
@@ -115,9 +111,9 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return "> ID de usuario: " + idUsuario + " Tipo de usuario: " + tipoUsuario +  " Nombre: " + 
-	nombreUsuario + " " + apellidoUsuario + " Contraseña: " + contrasena + " E-mail: " + 
-				correoUsuario + " Teléfono: " + telefonoUsuario + " Dirección: "  + direccionUsuario;
+		return "> [ID de usuario]: " + idUsuario + " [Tipo de usuario]: " + tipoUsuario +  " [Nombre]: " + 
+	nombreUsuario + " " + apellidoUsuario + " [Contraseña]: " + contrasena + " [E-mail]: " + 
+				correoUsuario + " [Teléfono]: " + telefonoUsuario + " [Dirección]: "  + direccionUsuario.toString();
 	}
-
+	
 }
