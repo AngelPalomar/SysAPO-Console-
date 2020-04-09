@@ -9,7 +9,7 @@ public class Usuario {
 	private String correoUsuario;
 	private String telefonoUsuario;
 	private Direccion direccionUsuario;
-
+	
 	public Usuario() {
 		direccionUsuario = new Direccion();
 	}

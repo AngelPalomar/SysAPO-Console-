@@ -1,12 +1,8 @@
 package ortopedicosArem;
 
-import java.util.ArrayList;
-
 public class Empleado extends Usuario {
 	protected int tipoEmpleado;
 	
-	public static Empleado empleado;
-	public ArrayList<Empleado> empleados;
 
 	public Empleado() {
 		super();
@@ -38,17 +34,12 @@ public class Empleado extends Usuario {
 		return tipoEmpleado;
 	}
 	
-	public void CargaEmpleado() {
-		empleados = new ArrayList<Empleado>(); //Inicializa el array list de empleados
-	}
-	
-	public void AgregarEmpleado(Empleado empleado) {
-		empleados.add(empleado);
-		System.out.println("¡Empleado agregado con éxito!");
+	public void AgregarEmpleado() {
+		
 	}
 
 	public void EliminarEmpleado() {
-
+		
 	}
 
 	public void ModificarEmpleado() {
@@ -56,9 +47,7 @@ public class Empleado extends Usuario {
 	}
 
 	public void ConsultarEmpleado() {
-		for (Empleado empleado : empleados) {
-			System.out.println(empleado.toString());
-		}
+		
 	}
 
 	@Override

@@ -1,46 +1,36 @@
 package ortopedicosArem;
 
-public class Venta {
+/**
+ * @author angel
+ *
+ */
+public class Venta extends Operacion {
 	private Cliente nombreCliente;
-	private Empleado nombreEmpleado;
 	private DetalleVenta detalleVenta;
+
+	public Venta() {
+		super();
+	}
+
+	public Venta(Empleado nombreEmpleado, DetalleVenta detalleVenta, String tipoDeOperacion, int dia, int mes,
+			int anio) {
+		super(nombreEmpleado, detalleVenta, tipoDeOperacion, dia, mes, anio);
+	}
+
 	public Cliente getNombreCliente() {
 		return nombreCliente;
 	}
+
 	public void setNombreCliente(Cliente nombreCliente) {
 		this.nombreCliente = nombreCliente;
 	}
-	public Empleado getNombreEmpleado() {
-		return nombreEmpleado;
-	}
-	public void setNombreEmpleado(Empleado nombreEmpleado) {
-		this.nombreEmpleado = nombreEmpleado;
-	}
+
 	public DetalleVenta getDetalleVenta() {
 		return detalleVenta;
 	}
+
 	public void setDetalleVenta(DetalleVenta detalleVenta) {
 		this.detalleVenta = detalleVenta;
 	}
-	
-    public void RealizarCompra() {
-    	
-    }
-    
-    public void Cancelar() {
-    	
-    }
-    
-    public void RealizarPago() {
-    	
-    }
-    
-    public void ConsultarVenta() {
-    	
-    }
-	
-	
-	
-	
-	
+
 }

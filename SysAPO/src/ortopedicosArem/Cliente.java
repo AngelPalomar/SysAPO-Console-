@@ -3,8 +3,6 @@ package ortopedicosArem;
 import java.util.ArrayList;
 
 public class Cliente extends Usuario {
-	
-	public ArrayList<Cliente> clientes;
 
 	public Cliente() {
 		super();
@@ -19,13 +17,8 @@ public class Cliente extends Usuario {
 		
 	}
 	
-	public void CargaCliente() {
-		clientes = new ArrayList<Cliente>();
-	}
-
-	public void agregarCliente(Cliente cliente) {
-		clientes.add(cliente);
-		System.out.println("¡Cliente agregado con éxito!");
+	public void agregarCliente() {
+		
 	}
 
 	public void eliminarCliente() {
@@ -37,8 +30,6 @@ public class Cliente extends Usuario {
 	}
 
 	public void consultarCliente() {
-		for (Cliente cliente : clientes) {
-			System.out.println(cliente);
-		}
+		
 	}
 }

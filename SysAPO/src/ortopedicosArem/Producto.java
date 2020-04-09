@@ -14,8 +14,6 @@ public class Producto {
 	private String descampProducto;
 	private int stockProducto;
 	
-	public ArrayList<Producto> productos;
-	
 	public Producto() {
 		marcaProducto = new Marca();
 		claseProducto = new Clase();
@@ -122,19 +120,12 @@ public class Producto {
 		this.stockProducto = stockProducto;
 	}
 	
-	public void CargaProducto() {
-		productos = new ArrayList<Producto>(); //Inicializa el array de productos
-	}
-	
-	public void AltaProducto(Producto producto) {
-		productos.add(producto);
-		System.out.println("¡Producto agregado con éxito!");
+	public void AltaProducto() {
+		
 	}
 
 	public void ConsultarProducto() {
-		for (Producto producto : productos) {
-			System.out.println(producto);
-		}
+		
 	}
 
 	public void ModificarProducto() {
