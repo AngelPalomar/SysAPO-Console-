@@ -12,20 +12,20 @@ import interfaces.Impuesto;
 public class DetalleVenta implements Impuesto {
 	private int folioVenta;
 	private ArrayList<Producto> productosVentaDetalle;
-	private int cantidadProducto;
+	private ArrayList<Integer> cantidadProductos;
 	private float subtotal;
 	private float importe;
-	
+
 	public DetalleVenta() {
 		
 	}
-	
-	public DetalleVenta(int folioVenta, ArrayList<Producto> productosVentaDetalle, int cantidadProducto, float subtotal,
-			float importe) {
-		
+
+	public DetalleVenta(int folioVenta, ArrayList<Producto> productosVentaDetalle, ArrayList<Integer> cantidadProductos,
+			float subtotal, float importe) {
+
 		this.folioVenta = folioVenta;
 		this.productosVentaDetalle = productosVentaDetalle;
-		this.cantidadProducto = cantidadProducto;
+		this.cantidadProductos = cantidadProductos;
 		this.subtotal = subtotal;
 		this.importe = importe;
 	}
@@ -46,12 +46,12 @@ public class DetalleVenta implements Impuesto {
 		this.productosVentaDetalle = productosVentaDetalle;
 	}
 
-	public int getCantidadProducto() {
-		return cantidadProducto;
+	public ArrayList<Integer> getCantidadProductos() {
+		return cantidadProductos;
 	}
 
-	public void setCantidadProducto(int cantidadProducto) {
-		this.cantidadProducto = cantidadProducto;
+	public void setCantidadProductos(ArrayList<Integer> cantidadProductos) {
+		this.cantidadProductos = cantidadProductos;
 	}
 
 	public float getSubtotal() {
@@ -70,8 +70,9 @@ public class DetalleVenta implements Impuesto {
 		this.importe = importe;
 	}
 
+	@Override
 	public String toString() {
-		return "Folio: " + folioVenta;
+		return "DetalleVenta [folioVenta=" + folioVenta + ", productosVentaDetalle=" + productosVentaDetalle
+				+ ", cantidadProductos=" + cantidadProductos + ", subtotal=" + subtotal + ", importe=" + importe + "]";
 	}
-
 }

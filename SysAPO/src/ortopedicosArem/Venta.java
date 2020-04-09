@@ -1,20 +1,48 @@
 package ortopedicosArem;
 
+import java.util.ArrayList;
+
 /**
  * @author angel
- *
+ * Clase hija de Operacion; "Venta"
  */
 public class Venta extends Operacion {
 	private Cliente nombreCliente;
 	private DetalleVenta detalleVenta;
 
+	/**
+	 * Constructor
+	 */
 	public Venta() {
 		super();
+		detalleVenta = new DetalleVenta(); //Inicialización del objeto detalle de Venta
 	}
-
-	public Venta(Empleado nombreEmpleado, DetalleVenta detalleVenta, String tipoDeOperacion, int dia, int mes,
-			int anio) {
-		super(nombreEmpleado, detalleVenta, tipoDeOperacion, dia, mes, anio);
+	
+	/**
+	 * @param nombreEmpleado
+	 * @param nombreCliente
+	 * @param tipoDeOperacion
+	 * @param dia
+	 * @param mes
+	 * @param anio
+	 * @param folioVenta
+	 * @param productosVentaDetalle
+	 * @param cantidadProductos
+	 * @param subtotal
+	 * @param importe
+	 * Constructor con composición
+	 */
+	
+	public Venta(Empleado nombreEmpleado, Cliente nombreCliente, String tipoDeOperacion, int dia, int mes,
+			int anio, int folioVenta, ArrayList<Producto> productosVentaDetalle, ArrayList<Integer> cantidadProductos,
+			float subtotal, float importe) {
+		
+		this.nombreCliente = nombreCliente;
+		detalleVenta.setFolioVenta(folioVenta);
+		detalleVenta.setProductosVentaDetalle(productosVentaDetalle);
+		detalleVenta.setCantidadProductos(cantidadProductos);
+		detalleVenta.setSubtotal(subtotal);
+		detalleVenta.setImporte(importe);
 	}
 
 	public Cliente getNombreCliente() {
@@ -29,8 +57,14 @@ public class Venta extends Operacion {
 		return detalleVenta;
 	}
 
-	public void setDetalleVenta(DetalleVenta detalleVenta) {
-		this.detalleVenta = detalleVenta;
+	public void setDetalleVenta(int folioVenta, ArrayList<Producto> productosVentaDetalle, ArrayList<Integer> cantidadProductos,
+			float subtotal, float importe) {
+		detalleVenta.setFolioVenta(folioVenta);
+		detalleVenta.setProductosVentaDetalle(productosVentaDetalle);
+		detalleVenta.setCantidadProductos(cantidadProductos);
+		detalleVenta.setSubtotal(subtotal);
+		detalleVenta.setImporte(importe);
 	}
-
+	
+	
 }
