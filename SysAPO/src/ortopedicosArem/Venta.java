@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Clase hija de Operacion; "Venta"
  */
 public class Venta extends Operacion {
-	private Cliente nombreCliente;
+	private ArrayList<Cliente> nombreCliente;
 	private DetalleVenta detalleVenta;
 
 	/**
@@ -33,7 +33,7 @@ public class Venta extends Operacion {
 	 * Constructor con composición
 	 */
 	
-	public Venta(Empleado nombreEmpleado, Cliente nombreCliente, String tipoDeOperacion, int dia, int mes,
+	public Venta(Empleado nombreEmpleado, ArrayList<Cliente> nombreCliente, String tipoDeOperacion, int dia, int mes,
 			int anio, int folioVenta, ArrayList<Producto> productosVentaDetalle, ArrayList<Integer> cantidadProductos,
 			float subtotal, float importe) {
 		
@@ -44,12 +44,13 @@ public class Venta extends Operacion {
 		detalleVenta.setSubtotal(subtotal);
 		detalleVenta.setImporte(importe);
 	}
-
-	public Cliente getNombreCliente() {
+	
+	//Setters y getters
+	public ArrayList<Cliente> getNombreCliente() {
 		return nombreCliente;
 	}
 
-	public void setNombreCliente(Cliente nombreCliente) {
+	public void setNombreCliente(ArrayList<Cliente> nombreCliente) {
 		this.nombreCliente = nombreCliente;
 	}
 
@@ -66,5 +67,8 @@ public class Venta extends Operacion {
 		detalleVenta.setImporte(importe);
 	}
 	
-	
+	@Override
+	public String toString() {
+		return super.toString() + " [Cliente]: " + nombreCliente.toString() + detalleVenta.toString();
+	}
 }

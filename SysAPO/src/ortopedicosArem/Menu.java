@@ -2,15 +2,23 @@ package ortopedicosArem;
 
 import java.util.Scanner;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 import components.LimpiarPantalla;
 
 public class Menu {
 	private static String opcion;
 	private int tipoUsuario;
-	private static Scanner leer = new Scanner(System.in);
-	public static LimpiarPantalla salto = new LimpiarPantalla();
+	public static boolean isOpcionValida = false;
+	private static Scanner leer;
+	public static LimpiarPantalla salto;
+	public static IniciarSesion salir;
+	public static Venta ventaSeleccion;
 
 	public Menu() {
+		leer = new Scanner(System.in);
+		salto = new LimpiarPantalla();
+		salir = new IniciarSesion();
 		MostrarMenu();
 	}
 
@@ -25,55 +33,44 @@ public class Menu {
 	 * Método estático para mostrar el menú.
 	 */
 	private static void MostrarMenu() {
-		
-		boolean isOpcionValida = false;
-		
+		System.out.println("----- BIENVENIDO -----");
+
 		do {
-			System.out.println("----- BIENVENIDO -----");
 			System.out.println("> Elija una opción.\n");
 			System.out.println("Gestionar Clientes [A]");
 			System.out.println("Gestionar Empleados [B]");
 			System.out.println("Gestionar Productos [C]");
 			System.out.println("Gestionar Ventas [D]");
-			System.out.println("Gestionar Rentas [E]");
-			System.out.println("Gestionar Compras al proveedor [F]");
 			System.out.println("Salir [X]\n");
 
-			System.out.println("Ingrese una opción: ");
+			System.out.print("Ingrese una opción: ");
 			opcion = leer.next();
 
-			if (opcion.equalsIgnoreCase("A") || opcion.equalsIgnoreCase("b") || 
-					opcion.equalsIgnoreCase("C") || opcion.equalsIgnoreCase("D") || 
-					opcion.equalsIgnoreCase("E") || opcion.equalsIgnoreCase("F") || 
-					opcion.equalsIgnoreCase("X")) {
+			if (opcion.equalsIgnoreCase("A") || opcion.equalsIgnoreCase("b") || opcion.equalsIgnoreCase("C")
+					|| opcion.equalsIgnoreCase("D") || opcion.equalsIgnoreCase("X")) {
 				switch (opcion) {
 				case "A":
 				case "a":
+					salto.Limpiar(20);
 					GestionarClientes();
 					break;
 				case "B":
 				case "b":
+					salto.Limpiar(20);
 					GestionarEmpleados();
 					break;
 				case "C":
 				case "c":
+					salto.Limpiar(20);
 					GestionarProductos();
 					break;
 				case "D":
 				case "d":
+					salto.Limpiar(20);
 					GestionarVentas();
-					break;
-				case "E":
-				case "e":
-					GestionarRentas();
-					break;
-				case "F":
-				case "f":
-					GestionarComprasProveedor();
 					break;
 				case "x":
 				case "X":
-					IniciarSesion salir = new IniciarSesion();
 					salto.Limpiar(20);
 					System.out.println("> Ha salido.\n\n");
 					salir.IniciarSesionMenu();
@@ -82,7 +79,7 @@ public class Menu {
 				isOpcionValida = true;
 				salto.Limpiar(20);
 			} else {
-				System.out.println("> Opción no valida. Vuelva a intentarlo.\n");
+				System.err.println("[Error]: Opción no valida. Vuelva a intentarlo.\n");
 				isOpcionValida = false;
 			}
 		} while (isOpcionValida == false);
@@ -92,7 +89,7 @@ public class Menu {
 	 * Opción de gestión de clientes.
 	 */
 	public static void GestionarClientes() {
-		
+
 	}
 
 	/**
@@ -113,21 +110,52 @@ public class Menu {
 	 * Opción para gestionar ventas.
 	 */
 	public static void GestionarVentas() {
-
+		isOpcionValida = false;
+		opcion = "";
+		System.out.println("----- MENÚ DE VENTAS -----");
+		do {
+			System.out.println("> Elija una opción.\n");
+			System.out.println("Nueva venta [A]");
+			System.out.println("Eliminar venta [B]");
+			System.out.println("Consultar venta [C]");
+			System.out.println("Modificar venta [D]");
+			System.out.println("Salir al menú principal [X]");
+			
+			System.out.print("Ingrese una opción: ");
+			opcion = leer.next();
+			
+			//condición para verificar la opción ingresada
+			if (opcion.equalsIgnoreCase("A") || opcion.equalsIgnoreCase("b") || opcion.equalsIgnoreCase("C")
+					|| opcion.equalsIgnoreCase("D") || opcion.equalsIgnoreCase("X")) {
+				switch (opcion) {
+				case "A": //Nueva venta
+				case "a":
+					salto.Limpiar(20);
+					break;
+				case "B": //Eliminar venta
+				case "b":
+					salto.Limpiar(20);
+					break;
+				case "C": //Consultar venta
+				case "c":
+					salto.Limpiar(20);
+					break;
+				case "D": // Modificar venta
+				case "d":
+					salto.Limpiar(20);
+					break;
+				case "x": //Salir
+				case "X":
+					salto.Limpiar(20);
+					MostrarMenu();
+					break;
+				}
+				isOpcionValida = true;
+				salto.Limpiar(20);
+			} else {
+				System.err.println("[Error]: Opción no valida. Vuelva a intentarlo.\n");
+				isOpcionValida = false;
+			}
+		} while (isOpcionValida == false);
 	}
-
-	/**
-	 * Opcion para gestionar rentas
-	 */
-	public static void GestionarRentas() {
-		
-	}
-
-	/**
-	 * Opcion para gestionar compras al proveedor
-	 */
-	public static void GestionarComprasProveedor() {
-
-	}
-
 }

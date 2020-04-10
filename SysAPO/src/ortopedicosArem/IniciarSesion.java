@@ -12,7 +12,7 @@ public class IniciarSesion {
 	
 	static private Scanner leer;
 	static private int idUsuario;
-	static private String contraseña;
+	static private String contrasena;
 	
 	static LimpiarPantalla limpiarPantalla = new LimpiarPantalla();
 
@@ -21,7 +21,6 @@ public class IniciarSesion {
 	 * Clase principal
 	 */
 	public static void main(String[] args) {
-		CargarDatosPrograma(); //Inicializa los datos en los array de la clase de Datos
 		
 		System.out.println("----- BIENVENIDO A ORTOPÉDICOS AREM -----");
 		System.out.println("[ INICIAR SESIÓN ]\n");
@@ -48,7 +47,7 @@ public class IniciarSesion {
 			}
 			
 			System.out.print("Contraseña: ");
-			contraseña = leer.next();
+			contrasena = leer.next();
 			
 			idCredencialesValidas = true;
 			
@@ -56,18 +55,5 @@ public class IniciarSesion {
 		
 		limpiarPantalla.Limpiar(30);
 		menu = new Menu(); //Carga menú
-	}
-	
-	/**
-	 * Método para agregar objetos por defecto.
-	 */
-	public static void CargarDatosPrograma() {
-		Datos datos = new Datos();
-		
-		datos.RegistroEmpleados();
-		datos.RegistroClientes();
-		datos.RegistroProductos();
-		
-		System.out.println("\n¡Datos cargados correctamente!\n");
 	}
 }

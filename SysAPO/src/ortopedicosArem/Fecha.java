@@ -3,16 +3,26 @@ package ortopedicosArem;
 public class Fecha {
 	private int dia, mes, anio;
 
+	/**
+	 * Constructor principal
+	 */
 	public Fecha() {
 
 	}
 
+	/**
+	 * @param dia
+	 * @param mes
+	 * @param anio
+	 * Constructor compuesto
+	 */
 	public Fecha(int dia, int mes, int anio) {
 		setDia(dia);
 		setMes(mes);
 		setAnio(anio);
 	}
 
+	//Setters y getters
 	public int getDia() {
 		return dia;
 	}

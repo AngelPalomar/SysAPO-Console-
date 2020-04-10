@@ -1,5 +1,6 @@
 package ortopedicosArem;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Calendar;
  * Clase padre "Operacion"
  */
 public abstract class Operacion {
-	protected Empleado nombreEmpleado;
+	protected ArrayList<Empleado> nombreEmpleado;
 	protected Fecha fechaOperacion;
 	protected String tipoDeOperacion;
 	
@@ -36,7 +37,7 @@ public abstract class Operacion {
 	 * @param anio
 	 * Constructor con atributos con composición
 	 */
-	public Operacion(Empleado nombreEmpleado, String tipoDeOperacion, int dia, int mes, int anio) {
+	public Operacion(ArrayList<Empleado> nombreEmpleado, String tipoDeOperacion, int dia, int mes, int anio) {
 		this.nombreEmpleado = nombreEmpleado;
 		this.tipoDeOperacion = tipoDeOperacion;
 		
@@ -50,14 +51,14 @@ public abstract class Operacion {
 	/**
 	 * @return
 	 */
-	public Empleado getNombreEmpleado() {
+	public ArrayList<Empleado> getNombreEmpleado() {
 		return nombreEmpleado;
 	}
 
 	/**
 	 * @param nombreEmpleado
 	 */
-	public void setNombreEmpleado(Empleado nombreEmpleado) {
+	public void setNombreEmpleado(ArrayList<Empleado> nombreEmpleado) {
 		this.nombreEmpleado = nombreEmpleado;
 	}
 	
@@ -98,24 +99,6 @@ public abstract class Operacion {
 	 */
 	@Override
 	public String toString() {
-		return "[Nombre del empleado]:" + nombreEmpleado.getNombreUsuario().concat(nombreEmpleado.getApellidoUsuario()) + 
-				" [Fecha de la operacion]:" + fechaOperacion + "[Tipo de Operacion]:" + tipoDeOperacion;
+		return "[Nombre del empleado]:" + nombreEmpleado.toString() + " [Fecha de la operacion]:" + fechaOperacion + "[Tipo de Operacion]:" + tipoDeOperacion;
 	}
-	
-
-//    public void RealizarCompra() {
-//    	
-//    }
-//    
-//    public void Cancelar() {
-//    	
-//    }
-//    
-//    public void RealizarPago() {
-//    	
-//    }
-//    
-//    public void ConsultarVenta() {
-//    	
-//    }
 }

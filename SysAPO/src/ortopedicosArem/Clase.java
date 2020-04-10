@@ -2,20 +2,33 @@ package ortopedicosArem;
 
 import java.util.ArrayList;
 
+/**
+ * @author angel
+ * Clase de categería para productos
+ */
 public class Clase {
 
 	private int idClase;
 	private String nombreClase;
 	
+	/**
+	 * Constructor principal
+	 */
 	public Clase() {
 		
 	}
 	
+	/**
+	 * @param idClase
+	 * @param nombreClase
+	 * Constructor compuesto
+	 */
 	public Clase(int idClase, String nombreClase) {
 		setIdClase(idClase);
 		setNombreClase(nombreClase);
 	}
 	
+	//Setters y Getters
 	public int getIdClase() {
 		return idClase;
 	}

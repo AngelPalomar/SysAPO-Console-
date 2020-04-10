@@ -7,7 +7,7 @@ import interfaces.Impuesto;
 
 /**
  * @author angel
- *
+ * Clase para añadir un detalle de venta
  */
 public class DetalleVenta implements Impuesto {
 	private int folioVenta;
@@ -15,11 +15,24 @@ public class DetalleVenta implements Impuesto {
 	private ArrayList<Integer> cantidadProductos;
 	private float subtotal;
 	private float importe;
+	
+	public Datos datosProductos;
 
+	/**
+	 * Constructor principal
+	 */
 	public DetalleVenta() {
-		
+		datosProductos = new Datos();
 	}
 
+	/**
+	 * @param folioVenta
+	 * @param productosVentaDetalle
+	 * @param cantidadProductos
+	 * @param subtotal
+	 * @param importe
+	 * Constructor compuesto
+	 */
 	public DetalleVenta(int folioVenta, ArrayList<Producto> productosVentaDetalle, ArrayList<Integer> cantidadProductos,
 			float subtotal, float importe) {
 
@@ -29,7 +42,8 @@ public class DetalleVenta implements Impuesto {
 		this.subtotal = subtotal;
 		this.importe = importe;
 	}
-
+	
+	//Setters y getters
 	public int getFolioVenta() {
 		return folioVenta;
 	}
@@ -72,7 +86,7 @@ public class DetalleVenta implements Impuesto {
 
 	@Override
 	public String toString() {
-		return "DetalleVenta [folioVenta=" + folioVenta + ", productosVentaDetalle=" + productosVentaDetalle
-				+ ", cantidadProductos=" + cantidadProductos + ", subtotal=" + subtotal + ", importe=" + importe + "]";
+		return "[Folio]: " + folioVenta + " [Productos]: " + productosVentaDetalle.toArray()
+				+ "[Subtotal]: " + subtotal + ", importe=" + importe + "]";
 	}
 }

@@ -1,13 +1,25 @@
 package ortopedicosArem;
 
+/**
+ * @author angel
+ * Clase de marca para productos.
+ */
 public class Marca {
 	private int idMarca;
 	private String nombreMarca;
 	
+	/**
+	 * Constructor principal
+	 */
 	public Marca() {
 		
 	}
 	
+	/**
+	 * @param idMarca
+	 * @param nombreMarca
+	 * Constrcuto compuesto
+	 */
 	public Marca(int idMarca, String nombreMarca) {
 		setIdMarca(idMarca);
 		setNombreMarca(nombreMarca);
