@@ -98,6 +98,21 @@ public class Datos {
 		producto.setStockProducto(5);
 		
 		listaProductos.AnadirListaProductos(producto);
+		
+		producto = new Producto();
+		
+		producto.setCodigoProducto(6003);
+		producto.setNombreProducto("Brazalete de clavicula");
+		producto.setPrecioProducto(656.00f);
+		producto.setCostoProducto(578.45f);
+		producto.setMarcaProducto(9003, "Biodex");
+		producto.setClaseProducto(10003, "Ortesis columna");
+		producto.setModeloProducto("LMT-123");
+		producto.setDesbreProducto("Para fracturas o lesiones de clavícula.");
+		producto.setDescampProducto("Fabricado en 30% nylon, 15% algodón");
+		producto.setStockProducto(1);
+		
+		listaProductos.AnadirListaProductos(producto);
 	}
 	
 	public void RegistroVentas() {

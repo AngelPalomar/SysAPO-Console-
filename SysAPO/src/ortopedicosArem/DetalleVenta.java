@@ -76,7 +76,8 @@ public class DetalleVenta implements Impuesto {
 		this.subtotal = subtotal;
 	}
 
-	public float getImporte(float subtotal) {
+	public float getImporte(float subtotal) { //get para calcular el importe total
+		importe = subtotal + (subtotal * iva);
 		return importe;
 	}
 

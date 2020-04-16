@@ -79,6 +79,7 @@ public class Venta extends Operacion {
 		Empleado empleadoVenta = new Empleado(); // Objeto Empleado
 		Cliente clienteVenta = new Cliente(); // Objeto Cliente
 		Producto productoVenta; // Objeto Producto
+		Producto productoRecorrido;
 
 		ArrayList<Producto> carrito = new ArrayList<Producto>(); // Lista <<Carrito>> de tipo Producto
 		ArrayList<Integer> cantidadesCarrito = new ArrayList<Integer>();
@@ -86,6 +87,9 @@ public class Venta extends Operacion {
 		int cantidadObjetosPorAgregarAlCarrito = 0;
 		int codigoIngresadoDeProducto = 0;
 		int cantidadProductosPorAgregar = 0;
+		int totalDeProductos = 0;
+		float subtotalAcumulado = 0;
+		float totalPagado = 0;
 		boolean isExistente = false;
 		boolean isSuficiente = false;
 		boolean isProductoAgregado = false;
@@ -149,7 +153,9 @@ public class Venta extends Operacion {
 
 		for (int i = 0; i < cantidadObjetosPorAgregarAlCarrito; i++) { // Bucle para agregar productos
 			do { // Valido si el producto existe
-				Iterator<Producto> productoIterator = datosVenta.listaProductos.productos.iterator();
+				Iterator<Producto> productoIterator = datosVenta.listaProductos.productos.iterator(); // Iterador para
+																										// recorrer el
+																										// catálogo
 				productoVenta = new Producto(); // Creo un objeto producto
 				codigoIngresadoDeProducto = 0; // Inicializo el codigo
 				isOpcionValida = false; // Inicializo la variable bandera
@@ -157,7 +163,7 @@ public class Venta extends Operacion {
 				isExistente = false;
 				isSuficiente = false;
 				do { // Validación de tipo de dato
-					System.out.print("Ingrese el código de un producto (" + (i + 1) + "): ");
+					System.out.print("\nIngrese el código de un producto (" + (i + 1) + "): ");
 					try { // Validación de tipo de dato
 						codigoIngresadoDeProducto = leer.nextInt();
 						if (codigoIngresadoDeProducto > 0) {
@@ -173,7 +179,7 @@ public class Venta extends Operacion {
 				} while (isOpcionValida == false);
 
 				for (int j = 0; j < datosVenta.listaProductos.productos.size(); j++) {
-					Producto productoRecorrido = datosVenta.listaProductos.productos.get(j);
+					productoRecorrido = datosVenta.listaProductos.productos.get(j);
 					if (codigoIngresadoDeProducto == productoRecorrido.getCodigoProducto()) {
 						isExistente = true; // El producto existe
 						productoVenta = datosVenta.listaProductos.productos.get(j);
@@ -185,7 +191,8 @@ public class Venta extends Operacion {
 					isSuficiente = true;
 				}
 
-				if (productoVenta.getStockProducto() > 0 && isExistente == true) { //Si el producto existe y Si tengo stock suficiente
+				if (productoVenta.getStockProducto() > 0 && isExistente == true) { // Si el producto existe y Si tengo
+																					// stock suficiente
 					isOpcionValida = false;
 					System.out.println("> " + productoVenta.getNombreProducto() + " seleccionado.");
 					do {
@@ -193,12 +200,7 @@ public class Venta extends Operacion {
 						try {
 							cantidadProductosPorAgregar = leer.nextInt();
 							if (cantidadProductosPorAgregar > 0) {
-								carrito.add(productoVenta); // Agrego producto
-								cantidadesCarrito.add(cantidadProductosPorAgregar); // Agrego cantidad
-								System.out.println("¡" + productoVenta.getNombreProducto() + " x(" + cantidadProductosPorAgregar + ") agregado al carrito con éxito!");
 								isOpcionValida = true; // El valor es valido
-								isSuficiente = true; // Hay suficientes
-								isProductoAgregado = true; // El producto fue agregado con exito
 							} else {
 								System.err.println("[Error]: El valor debe ser mayor que cero\n");
 							}
@@ -207,16 +209,65 @@ public class Venta extends Operacion {
 							leer.next();
 							continue;
 						}
+						if (productoVenta.getStockProducto() >= cantidadProductosPorAgregar) { // Si tengo productos
+																								// suficientes en stock
+							carrito.add(productoVenta); // Agrego producto
+							cantidadesCarrito.add(cantidadProductosPorAgregar); // Agrego cantidad
+							subtotalAcumulado += productoVenta.getPrecioProducto() * cantidadProductosPorAgregar;
+							System.out.println("¡" + productoVenta.getNombreProducto() + " x("
+									+ cantidadProductosPorAgregar + ") agregado al carrito con éxito!");
+							isSuficiente = true; // Hay suficientes
+							isProductoAgregado = true; // El producto fue agregado con exito
+						}
+
 					} while (isOpcionValida == false);
 				}
 
-				if (isSuficiente == false) {
+				if (isSuficiente == false) { //Verifica si hay suficientes productos para la venta
 					System.err.println(
 							"[Error]: No hay suficientes existencias de: " + productoVenta.getNombreProducto());
 				}
 
 			} while (isProductoAgregado == false);
 		}
+
+		// Mostrando resumen de venta
+		System.out.println("\n***** RESUMEN (IVA incluido) *****\n");
+		System.out.println("=========================================================\n");
+		for (int i = 0; i < carrito.size(); i++) {
+			productoRecorrido = carrito.get(i);
+			totalDeProductos += cantidadesCarrito.get(i);
+			System.out.println("Cod. " + productoRecorrido.getCodigoProducto() + "     " + productoRecorrido.getNombreProducto()
+					+ "   $" + productoRecorrido.getPrecioProducto() + "   x" + cantidadesCarrito.get(i) + "   $"
+					+ productoRecorrido.getPrecioProducto() * cantidadesCarrito.get(i));
+		}
+		System.out.println("\n=========================================================");
+		System.out.println("\nTotal de productos: " + totalDeProductos + " producto(s)");
+		System.out.println("Subtotal: $" + subtotalAcumulado + " MXN");
+		System.out.println("\n\tTOTAL: $" + detalleVenta.getImporte(subtotalAcumulado) + " MXN"); //Calculo el importe
+		
+		isOpcionValida = false;
+		do {
+			System.out.print("\n\nIngrese total por pagar: ");
+			try {
+				totalPagado = leer.nextFloat();
+				if (totalPagado >= detalleVenta.getImporte(subtotalAcumulado)) {
+					datosVenta.listaVentas.AnadirListaVentas(nuevaVenta); //Anadir la venta al registro
+					System.out.println("Cambio: $" + RealizarPago(detalleVenta.getImporte(subtotalAcumulado), totalPagado));
+					isOpcionValida = true;
+				} else {
+					System.err.println("[Error]: El valor debe ser mayor al total.");
+				}
+			} catch (Exception e) {
+				System.err.println("[Error]: El valor debe ser un numero.");
+				leer.next();
+				continue;
+			}
+		} while (isOpcionValida == false);
+	}
+	
+	private float RealizarPago(float importe, float cantidadPagada) { //Método para realizar un pago
+		return cantidadPagada - importe;
 	}
 
 	@Override

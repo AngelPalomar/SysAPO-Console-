@@ -81,7 +81,7 @@ public class Menu {
 				}
 				isOpcionValida = true;
 			} else {
-				System.err.println("[Error]: Opción no valida. Vuelva a intentarlo.\n");
+				System.err.println("[Error]: Opción no existente. Vuelva a intentarlo.\n");
 				isOpcionValida = false;
 			}
 		} while (isOpcionValida == false);
@@ -161,7 +161,7 @@ public class Menu {
 				}
 				isOpcionValida = true;
 			} else {
-				System.err.println("[Error]: Opción no valida. Vuelva a intentarlo.\n");
+				System.err.println("[Error]: Opción no existente. Vuelva a intentarlo.\n");
 				isOpcionValida = false;
 			}
 		} while (isOpcionValida == false);
