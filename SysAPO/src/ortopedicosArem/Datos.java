@@ -1,17 +1,23 @@
 package ortopedicosArem;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import lists.ListaClientes;
 import lists.ListaEmpleados;
 import lists.ListaProductos;
+import lists.ListaVentas;
 
 public class Datos {
 	
 	public Empleado empleado;
 	public Cliente cliente;
 	public Producto producto;
+	public Venta venta;
 	public ListaEmpleados listaEmpleados = new ListaEmpleados();
 	public ListaClientes listaClientes = new ListaClientes();
 	public ListaProductos listaProductos = new ListaProductos();
+	public ListaVentas listaVentas = new ListaVentas();
 	
 	public void RegistroEmpleados() {
 		
@@ -88,9 +94,45 @@ public class Datos {
 		producto.setClaseProducto(10002, "Rehabilitación");
 		producto.setModeloProducto("JE-36");
 		producto.setDesbreProducto("Suave y constante al cuello.");
-		producto.setDescampProducto("Tamaño 61x40x9.5cm aprox. Densidad 2.50D, peso 1050g.Centro de gel.");
+		producto.setDescampProducto("Tamaño 61x40x9.5cm aprox. Densidad 2.50D, peso 1050g. Centro de gel.");
 		producto.setStockProducto(5);
 		
 		listaProductos.AnadirListaProductos(producto);
+	}
+	
+	public void RegistroVentas() {
+		venta = new Venta();
+		Datos datosLocal = new Datos();
+		empleado = new Empleado();
+		cliente = new Cliente();
+		ArrayList<Producto> carrito = new ArrayList<Producto>();
+		ArrayList<Integer> cantidadesCarrito = new ArrayList<Integer>();
+		
+		datosLocal.RegistroClientes();
+		datosLocal.RegistroEmpleados();
+		datosLocal.RegistroProductos();
+		
+		empleado = datosLocal.listaEmpleados.empleados.get(0);
+		cliente = datosLocal.listaClientes.clientes.get(0);
+		
+		producto = new Producto();
+		producto = datosLocal.listaProductos.productos.get(1);
+		carrito.add(producto);
+		cantidadesCarrito.add(1);
+		producto = new Producto();
+		producto = datosLocal.listaProductos.productos.get(2);
+		carrito.add(producto);
+		cantidadesCarrito.add(1);
+		
+		venta.setNombreEmpleado(empleado.getNombreUsuario() + " " + empleado.getApellidoUsuario());
+		venta.setNombreCliente(cliente.getNombreUsuario() + " " + cliente.getApellidoUsuario());
+		venta.setTipoDeOperacion("Venta");
+		venta.detalleVenta.setFolioVenta(1);
+		venta.detalleVenta.setProductosVentaDetalle(carrito);
+		venta.detalleVenta.setCantidadProductos(cantidadesCarrito);
+		venta.detalleVenta.setSubtotal(0.00f);
+		venta.detalleVenta.setImporte(0.00f);
+		
+		listaVentas.AnadirListaVentas(venta);
 	}
 }

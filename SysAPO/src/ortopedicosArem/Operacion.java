@@ -2,28 +2,30 @@ package ortopedicosArem;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * @author angel
  * Clase padre "Operacion"
  */
 public abstract class Operacion {
-	protected ArrayList<Empleado> nombreEmpleado;
+	protected String nombreEmpleado;
 	protected Fecha fechaOperacion;
 	protected String tipoDeOperacion;
 	
 	private Calendar fechaActual;
+
 
 	/**
 	 * Constructor
 	 */
 	public Operacion() {
 		fechaOperacion = new Fecha(); //Inicializo el objeto fecha
-		fechaActual = Calendar.getInstance(); //Inicializo el objeto Calendar
+		fechaActual = new GregorianCalendar(); //Inicializo el objeto Calendar
 
-		fechaOperacion.setAnio(fechaActual.get(Calendar.YEAR));
-		fechaOperacion.setMes(fechaActual.get(Calendar.MONTH));
-		fechaOperacion.setAnio(fechaActual.get(Calendar.DAY_OF_MONTH));
+		fechaOperacion.setAnio(2020/*fechaActual.get(Calendar.YEAR)*/);
+		fechaOperacion.setMes(4/*fechaActual.get(Calendar.MONTH)*/);
+		fechaOperacion.setDia(15/*fechaActual.get(Calendar.DAY_OF_MONTH)*/);
 		/**
 		 * asignación de valores de la fecha local por defecto al crear la clase
 		 */
@@ -37,7 +39,7 @@ public abstract class Operacion {
 	 * @param anio
 	 * Constructor con atributos con composición
 	 */
-	public Operacion(ArrayList<Empleado> nombreEmpleado, String tipoDeOperacion, int dia, int mes, int anio) {
+	public Operacion(String nombreEmpleado, String tipoDeOperacion, int dia, int mes, int anio) {
 		this.nombreEmpleado = nombreEmpleado;
 		this.tipoDeOperacion = tipoDeOperacion;
 		
@@ -51,14 +53,14 @@ public abstract class Operacion {
 	/**
 	 * @return
 	 */
-	public ArrayList<Empleado> getNombreEmpleado() {
+	public String getNombreEmpleado() {
 		return nombreEmpleado;
 	}
 
 	/**
 	 * @param nombreEmpleado
 	 */
-	public void setNombreEmpleado(ArrayList<Empleado> nombreEmpleado) {
+	public void setNombreEmpleado(String nombreEmpleado) {
 		this.nombreEmpleado = nombreEmpleado;
 	}
 	
@@ -99,6 +101,6 @@ public abstract class Operacion {
 	 */
 	@Override
 	public String toString() {
-		return "[Nombre del empleado]:" + nombreEmpleado.toString() + " [Fecha de la operacion]:" + fechaOperacion + "[Tipo de Operacion]:" + tipoDeOperacion;
+		return "----- INFORMACION DE LA OPERACION -----\n" + "\n\t[Nombre del empleado]: " + nombreEmpleado + "\n\t[Fecha de la operacion]: " + fechaOperacion + "\n\t[Tipo de Operacion]: " + tipoDeOperacion;
 	}
 }

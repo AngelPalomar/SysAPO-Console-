@@ -61,7 +61,7 @@ public class Fecha {
 	}
 
 	public String toString() {
-		return "Fecha de la operación: " + dia + " / " + mes + " / " + anio;
+		return dia + "/" + mes + "/" + anio + " ";
 	}
 
 }

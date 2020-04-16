@@ -76,7 +76,7 @@ public class DetalleVenta implements Impuesto {
 		this.subtotal = subtotal;
 	}
 
-	public float getImporte() {
+	public float getImporte(float subtotal) {
 		return importe;
 	}
 
@@ -86,7 +86,7 @@ public class DetalleVenta implements Impuesto {
 
 	@Override
 	public String toString() {
-		return "[Folio]: " + folioVenta + " [Productos]: " + productosVentaDetalle.toArray()
-				+ "[Subtotal]: " + subtotal + ", importe=" + importe + "]";
+		return "\n\t[Folio]: " + folioVenta + "\n\t[Productos]: " + productosVentaDetalle.toString()
+				+ "\n\t[Subtotal]: " + subtotal + "\n\t[importe]: " + importe;
 	}
 }

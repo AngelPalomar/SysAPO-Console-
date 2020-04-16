@@ -138,10 +138,10 @@ public class Producto {
 	
 	@Override
 	public String toString() {
-		return "> [Código]: " + getCodigoProducto() + " [Nombre del producto]: ".concat(getNombreProducto()) + 
-				" [Precio]: $" + getPrecioProducto() + " [Costo]: $" + getCostoProducto() + " [Información]: " + 
-				marcaProducto.toString() + claseProducto.toString() + " [Modelo]: " + getModeloProducto() + 
-				" [Descripción]: " + getDesbreProducto() + " [Detalles]: " + getDescampProducto();
+		return "\n\t\t[Código]: " + getCodigoProducto() + "\n\t\t[Nombre del producto]: ".concat(getNombreProducto()) + 
+				"\n\t\t\t[Precio]: $" + getPrecioProducto() + "\n\t\t\t[Costo]: $" + getCostoProducto() + "\n\t\t\t[Información]: " + 
+				marcaProducto.toString() + claseProducto.toString() + "\n\t\t\t[Modelo]: " + getModeloProducto() + 
+				"\n\t\t\t[Descripción]: " + getDesbreProducto() + "\n\t\t\t[Detalles]: " + getDescampProducto();
 	}
 
 }

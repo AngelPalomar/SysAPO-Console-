@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import components.LimpiarPantalla;
+import lists.ListaVentas;
 
 public class Menu {
 	private static String opcion;
@@ -13,12 +14,14 @@ public class Menu {
 	private static Scanner leer;
 	public static LimpiarPantalla salto;
 	public static IniciarSesion salir;
-	public static Venta ventaSeleccion;
+	public static Venta gestionVenta;
 
 	public Menu() {
 		leer = new Scanner(System.in);
 		salto = new LimpiarPantalla();
 		salir = new IniciarSesion();
+
+		gestionVenta = new Venta();
 		MostrarMenu();
 	}
 
@@ -77,7 +80,6 @@ public class Menu {
 					break;
 				}
 				isOpcionValida = true;
-				salto.Limpiar(20);
 			} else {
 				System.err.println("[Error]: Opción no valida. Vuelva a intentarlo.\n");
 				isOpcionValida = false;
@@ -120,38 +122,44 @@ public class Menu {
 			System.out.println("Consultar venta [C]");
 			System.out.println("Modificar venta [D]");
 			System.out.println("Salir al menú principal [X]");
-			
+
 			System.out.print("Ingrese una opción: ");
 			opcion = leer.next();
-			
-			//condición para verificar la opción ingresada
-			if (opcion.equalsIgnoreCase("A") || opcion.equalsIgnoreCase("b") || opcion.equalsIgnoreCase("C")
+
+			// condición para verificar la opción ingresada
+			if (opcion.equalsIgnoreCase("A") || opcion.equalsIgnoreCase("B") || opcion.equalsIgnoreCase("C")
 					|| opcion.equalsIgnoreCase("D") || opcion.equalsIgnoreCase("X")) {
 				switch (opcion) {
-				case "A": //Nueva venta
-				case "a":
-					salto.Limpiar(20);
+				case "A": // Nueva venta
+				case "a": {
+					salto.Limpiar(20); // saltos de linea
+					gestionVenta.AgregarVenta();
+				}
 					break;
-				case "B": //Eliminar venta
-				case "b":
-					salto.Limpiar(20);
+				case "B": // Eliminar venta
+				case "b": {
+					salto.Limpiar(20); // saltos de linea
+				}
 					break;
-				case "C": //Consultar venta
-				case "c":
-					salto.Limpiar(20);
+				case "C": // Consultar venta
+				case "c": {
+					salto.Limpiar(20); // saltos de linea
+					
+				}
 					break;
 				case "D": // Modificar venta
-				case "d":
-					salto.Limpiar(20);
+				case "d": {
+					salto.Limpiar(20); // saltos de linea
+				}
 					break;
-				case "x": //Salir
-				case "X":
-					salto.Limpiar(20);
+				case "x": // Salir
+				case "X": {
+					salto.Limpiar(20); // saltos de linea
 					MostrarMenu();
+				}
 					break;
 				}
 				isOpcionValida = true;
-				salto.Limpiar(20);
 			} else {
 				System.err.println("[Error]: Opción no valida. Vuelva a intentarlo.\n");
 				isOpcionValida = false;
