@@ -139,6 +139,7 @@ public class Menu {
 				case "B": // Eliminar venta
 				case "b": {
 					salto.Limpiar(20); // saltos de linea
+					gestionVenta.EliminarVenta();
 				}
 					break;
 				case "C": // Consultar venta
