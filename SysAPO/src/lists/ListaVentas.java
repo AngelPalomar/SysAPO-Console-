@@ -27,14 +27,14 @@ public class ListaVentas {
 	 */
 	public void AnadirListaVentas(Venta venta) {
 		ventas.add(venta);
-		System.out.println("¡Venta agregada con éxito!");
+		System.out.println("¡Venta agregada con éxito!"); //mensaje que indica que se anadió una venta
 	}
 
 	/**
 	 * Método para mostrar todos los elementos
 	 */
-	public void MostrarVentas() {
-		for (Venta venta : ventas) {
+	public void MostrarVentas() { 
+		for (Venta venta : ventas) { //recorrido de ventas
 			System.out.println(venta);
 		}
 	}

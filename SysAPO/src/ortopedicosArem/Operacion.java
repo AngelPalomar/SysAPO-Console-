@@ -15,7 +15,6 @@ public abstract class Operacion {
 	
 	private Calendar fechaActual;
 
-
 	/**
 	 * Constructor
 	 */
@@ -23,9 +22,9 @@ public abstract class Operacion {
 		fechaOperacion = new Fecha(); //Inicializo el objeto fecha
 		fechaActual = new GregorianCalendar(); //Inicializo el objeto Calendar
 
-		fechaOperacion.setAnio(2020/*fechaActual.get(Calendar.YEAR)*/);
-		fechaOperacion.setMes(4/*fechaActual.get(Calendar.MONTH)*/);
-		fechaOperacion.setDia(15/*fechaActual.get(Calendar.DAY_OF_MONTH)*/);
+		fechaOperacion.setAnio(fechaActual.get(Calendar.YEAR));
+		fechaOperacion.setMes(fechaActual.get(Calendar.MONTH) + 1);
+		fechaOperacion.setDia(fechaActual.get(Calendar.DAY_OF_MONTH));
 		/**
 		 * asignación de valores de la fecha local por defecto al crear la clase
 		 */
@@ -101,6 +100,6 @@ public abstract class Operacion {
 	 */
 	@Override
 	public String toString() {
-		return "----- INFORMACION DE LA OPERACION -----\n" + "\n\t[Nombre del empleado]: " + nombreEmpleado + "\n\t[Fecha de la operacion]: " + fechaOperacion + "\n\t[Tipo de Operacion]: " + tipoDeOperacion;
+		return "\n----- INFORMACION DE LA OPERACION -----\n" + "\n\t[Nombre del empleado]: " + nombreEmpleado + "\n\t[Fecha de la operacion]: " + fechaOperacion + "\n\t[Tipo de Operacion]: " + tipoDeOperacion;
 	}
 }

@@ -1,5 +1,7 @@
 package ortopedicosArem;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import components.LimpiarPantalla;
 
@@ -13,17 +15,26 @@ public class IniciarSesion {
 	static private Scanner leer;
 	static private int idUsuario;
 	static private String contrasena;
+	static private Fecha fecha;
+	static private Calendar fechaHoy;
 	
 	static LimpiarPantalla limpiarPantalla = new LimpiarPantalla();
-
+	
 	/**
 	 * @param args
 	 * Clase principal
 	 */
 	public static void main(String[] args) {
+		fecha = new Fecha();
+		fechaHoy = new GregorianCalendar();
+		
+		fecha.setAnio(fechaHoy.get(Calendar.YEAR));
+		fecha.setMes(fechaHoy.get(Calendar.MONTH) + 1);
+		fecha.setDia(fechaHoy.get(Calendar.DAY_OF_MONTH));
 		
 		System.out.println("----- BIENVENIDO A ORTOPÉDICOS AREM -----");
-		System.out.println("[ INICIAR SESIÓN ]\n");
+		System.out.println("Hoy es: " + fecha.toString());
+		System.out.println("\n[ INICIAR SESIÓN ]\n");
 		
 		IniciarSesionMenu(); //Muestra menú de acceso
 	}

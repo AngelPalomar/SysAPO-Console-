@@ -9,10 +9,23 @@ public class Direccion {
 	private String municipio;
 	private String estado;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public Direccion() {
 		
 	}
 	
+	/**
+	 * @param calle
+	 * @param numeroInterior
+	 * @param numeroExterior
+	 * @param cp
+	 * @param colonia
+	 * @param municipio
+	 * @param estado
+	 * Constructor con atributos
+	 */
 	public Direccion(String calle, String numeroInterior, String numeroExterior, String cp, String colonia,
 			String municipio, String estado) {
 

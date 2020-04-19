@@ -30,7 +30,7 @@ public class Datos {
 		empleado.setContrasena("0000");
 		empleado.setCorreoUsuario("angel.palomar@arem.mx");
 		empleado.setTelefonoUsuario("4427047812");
-		empleado.setDireccionUsuario("Ficticia", "404", "A", "76158", "La Falacia", "Querétaro", "QRO.");
+		empleado.setDireccionUsuario("Ficticia", "A", "404", "76158", "La Falacia", "Querétaro", "QRO.");
 		empleado.setTipoEmpleado(9);
 		
 		listaEmpleados.AnadirListaEmpleados(empleado);
@@ -47,7 +47,19 @@ public class Datos {
 		cliente.setContrasena("FFFF");
 		cliente.setCorreoUsuario("confleis@gmail.com");
 		cliente.setTelefonoUsuario("4421234567");
-		cliente.setDireccionUsuario("Mentira", "512", "1", "78919", "Fraude", "Corregidora", "QRO.");
+		cliente.setDireccionUsuario("Mentira", "1", "512", "78919", "Fraude", "Corregidora", "QRO.");
+		
+		listaClientes.AnadirListaClientes(cliente);
+		
+		cliente = new Cliente();
+		
+		cliente.setIdUsuario(1002);
+		cliente.setNombreUsuario("Eduardo");
+		cliente.setApellidoUsuario("Centeno");
+		cliente.setContrasena("FFFE");
+		cliente.setCorreoUsuario("chokocrispis@gmail.com");
+		cliente.setTelefonoUsuario("4420000000");
+		cliente.setDireccionUsuario("Calumnia infame", "9", "2501", "90000", "De la Farsa", "El Marqués", "QRO.");
 		
 		listaClientes.AnadirListaClientes(cliente);
 	}
@@ -143,6 +155,29 @@ public class Datos {
 		venta.setNombreCliente(cliente.getNombreUsuario() + " " + cliente.getApellidoUsuario());
 		venta.setTipoDeOperacion("Venta");
 		venta.detalleVenta.setFolioVenta(1);
+		venta.detalleVenta.setProductosVentaDetalle(carrito);
+		venta.detalleVenta.setCantidadProductos(cantidadesCarrito);
+		venta.detalleVenta.setSubtotal(0.00f);
+		venta.detalleVenta.setImporte(0.00f);
+		
+		listaVentas.AnadirListaVentas(venta);
+		
+		venta = new Venta();
+		carrito = new ArrayList<Producto>();
+		cantidadesCarrito = new ArrayList<Integer>();
+		
+		empleado = datosLocal.listaEmpleados.empleados.get(0);
+		cliente = datosLocal.listaClientes.clientes.get(1);
+		
+		producto = new Producto();
+		producto = datosLocal.listaProductos.productos.get(0);
+		carrito.add(producto);
+		cantidadesCarrito.add(2);
+		
+		venta.setNombreEmpleado(empleado.getNombreUsuario() + " " + empleado.getApellidoUsuario());
+		venta.setNombreCliente(cliente.getNombreUsuario() + " " + cliente.getApellidoUsuario());
+		venta.setTipoDeOperacion("Venta");
+		venta.detalleVenta.setFolioVenta(2);
 		venta.detalleVenta.setProductosVentaDetalle(carrito);
 		venta.detalleVenta.setCantidadProductos(cantidadesCarrito);
 		venta.detalleVenta.setSubtotal(0.00f);

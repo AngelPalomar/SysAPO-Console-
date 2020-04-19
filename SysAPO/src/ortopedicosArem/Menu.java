@@ -76,7 +76,7 @@ public class Menu {
 				case "X":
 					salto.Limpiar(20);
 					System.out.println("> Ha salido.\n\n");
-					salir.IniciarSesionMenu();
+					IniciarSesion.IniciarSesionMenu();
 					break;
 				}
 				isOpcionValida = true;
@@ -123,7 +123,7 @@ public class Menu {
 			System.out.println("Modificar venta [D]");
 			System.out.println("Salir al menú principal [X]");
 
-			System.out.print("Ingrese una opción: ");
+			System.out.print("\nIngrese una opción: ");
 			opcion = leer.next();
 
 			// condición para verificar la opción ingresada
@@ -145,7 +145,7 @@ public class Menu {
 				case "C": // Consultar venta
 				case "c": {
 					salto.Limpiar(20); // saltos de linea
-					
+					gestionVenta.ConsultarVenta();
 				}
 					break;
 				case "D": // Modificar venta
