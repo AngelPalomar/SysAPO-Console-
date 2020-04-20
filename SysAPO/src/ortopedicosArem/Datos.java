@@ -1,7 +1,6 @@
 package ortopedicosArem;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import lists.ListaClientes;
 import lists.ListaEmpleados;
@@ -32,6 +31,19 @@ public class Datos {
 		empleado.setTelefonoUsuario("4427047812");
 		empleado.setDireccionUsuario("Ficticia", "A", "404", "76158", "La Falacia", "Querétaro", "QRO.");
 		empleado.setTipoEmpleado(9);
+		
+		listaEmpleados.AnadirListaEmpleados(empleado);
+		
+		empleado = new Empleado();
+		
+		empleado.setIdUsuario(1001);
+		empleado.setTipoUsuario(2);
+		empleado.setNombreUsuario("Jorge Alan");
+		empleado.setApellidoUsuario("Salas Montoya");
+		empleado.setContrasena("0001");
+		empleado.setCorreoUsuario("alan.salas@arem.mx");
+		empleado.setTelefonoUsuario("4421290741");
+		empleado.setDireccionUsuario("Patraña", "N/A", "15", "76148", "Falsedad", "Querétaro", "QRO.");
 		
 		listaEmpleados.AnadirListaEmpleados(empleado);
 	}
@@ -139,6 +151,7 @@ public class Datos {
 		datosLocal.RegistroEmpleados();
 		datosLocal.RegistroProductos();
 		
+		// Venta 1
 		empleado = datosLocal.listaEmpleados.empleados.get(0);
 		cliente = datosLocal.listaClientes.clientes.get(0);
 		
@@ -162,6 +175,7 @@ public class Datos {
 		
 		listaVentas.AnadirListaVentas(venta);
 		
+		// Venta 2
 		venta = new Venta();
 		carrito = new ArrayList<Producto>();
 		cantidadesCarrito = new ArrayList<Integer>();
@@ -178,6 +192,35 @@ public class Datos {
 		venta.setNombreCliente(cliente.getNombreUsuario() + " " + cliente.getApellidoUsuario());
 		venta.setTipoDeOperacion("Venta");
 		venta.detalleVenta.setFolioVenta(2);
+		venta.detalleVenta.setProductosVentaDetalle(carrito);
+		venta.detalleVenta.setCantidadProductos(cantidadesCarrito);
+		venta.detalleVenta.setSubtotal(0.00f);
+		venta.detalleVenta.setImporte(0.00f);
+		
+		listaVentas.AnadirListaVentas(venta);
+		
+		// Venta 3
+		venta = new Venta();
+		carrito = new ArrayList<Producto>();
+		cantidadesCarrito = new ArrayList<Integer>();
+		
+		empleado = datosLocal.listaEmpleados.empleados.get(1);
+		cliente = datosLocal.listaClientes.clientes.get(1);
+		
+		producto = new Producto();
+		producto = datosLocal.listaProductos.productos.get(3);
+		carrito.add(producto);
+		cantidadesCarrito.add(1);
+		
+		producto = new Producto();
+		producto = datosLocal.listaProductos.productos.get(0);
+		carrito.add(producto);
+		cantidadesCarrito.add(3);
+		
+		venta.setNombreEmpleado(empleado.getNombreUsuario() + " " + empleado.getApellidoUsuario());
+		venta.setNombreCliente(cliente.getNombreUsuario() + " " + cliente.getApellidoUsuario());
+		venta.setTipoDeOperacion("Venta");
+		venta.detalleVenta.setFolioVenta(3);
 		venta.detalleVenta.setProductosVentaDetalle(carrito);
 		venta.detalleVenta.setCantidadProductos(cantidadesCarrito);
 		venta.detalleVenta.setSubtotal(0.00f);

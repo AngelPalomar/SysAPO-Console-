@@ -1,25 +1,20 @@
 package ortopedicosArem;
 
 import java.util.Scanner;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 import components.LimpiarPantalla;
-import lists.ListaVentas;
 
 public class Menu {
 	private static String opcion;
+	@SuppressWarnings("unused")
 	private int tipoUsuario;
-	public static boolean isOpcionValida = false;
+	private static boolean isOpcionValida = false;
 	private static Scanner leer;
-	public static LimpiarPantalla salto;
-	public static IniciarSesion salir;
-	public static Venta gestionVenta;
+	private static LimpiarPantalla salto;
+	private static Venta gestionVenta;
 
 	public Menu() {
 		leer = new Scanner(System.in);
 		salto = new LimpiarPantalla();
-		salir = new IniciarSesion();
 
 		gestionVenta = new Venta();
 		MostrarMenu();
@@ -49,40 +44,42 @@ public class Menu {
 			System.out.print("Ingrese una opción: ");
 			opcion = leer.next();
 
-			if (opcion.equalsIgnoreCase("A") || opcion.equalsIgnoreCase("b") || opcion.equalsIgnoreCase("C")
-					|| opcion.equalsIgnoreCase("D") || opcion.equalsIgnoreCase("X")) {
-				switch (opcion) {
-				case "A":
-				case "a":
-					salto.Limpiar(20);
-					GestionarClientes();
-					break;
-				case "B":
-				case "b":
-					salto.Limpiar(20);
-					GestionarEmpleados();
-					break;
-				case "C":
-				case "c":
-					salto.Limpiar(20);
-					GestionarProductos();
-					break;
-				case "D":
-				case "d":
-					salto.Limpiar(20);
-					GestionarVentas();
-					break;
-				case "x":
-				case "X":
-					salto.Limpiar(20);
-					System.out.println("> Ha salido.\n\n");
-					IniciarSesion.IniciarSesionMenu();
-					break;
-				}
+			switch (opcion) {
+			case "A":
+			case "a":
 				isOpcionValida = true;
-			} else {
+				salto.Limpiar(20);
+				GestionarClientes();
+				break;
+			case "B":
+			case "b":
+				isOpcionValida = true;
+				salto.Limpiar(20);
+				GestionarEmpleados();
+				break;
+			case "C":
+			case "c":
+				isOpcionValida = true;
+				salto.Limpiar(20);
+				GestionarProductos();
+				break;
+			case "D":
+			case "d":
+				isOpcionValida = true;
+				salto.Limpiar(20);
+				GestionarVentas();
+				break;
+			case "x":
+			case "X":
+				isOpcionValida = true;
+				salto.Limpiar(20);
+				System.out.println("> Ha salido.\n\n");
+				IniciarSesion.IniciarSesionMenu();
+				break;
+			default:
 				System.err.println("[Error]: Opción no existente. Vuelva a intentarlo.\n");
 				isOpcionValida = false;
+				break;
 			}
 		} while (isOpcionValida == false);
 	}
@@ -114,8 +111,8 @@ public class Menu {
 	public static void GestionarVentas() {
 		isOpcionValida = false;
 		opcion = "";
-		System.out.println("----- MENÚ DE VENTAS -----");
 		do {
+			System.out.println("----- MENÚ DE VENTAS -----");
 			System.out.println("> Elija una opción.\n");
 			System.out.println("Nueva venta [A]");
 			System.out.println("Eliminar venta [B]");
@@ -127,43 +124,47 @@ public class Menu {
 			opcion = leer.next();
 
 			// condición para verificar la opción ingresada
-			if (opcion.equalsIgnoreCase("A") || opcion.equalsIgnoreCase("B") || opcion.equalsIgnoreCase("C")
-					|| opcion.equalsIgnoreCase("D") || opcion.equalsIgnoreCase("X")) {
-				switch (opcion) {
-				case "A": // Nueva venta
-				case "a": {
-					salto.Limpiar(20); // saltos de linea
-					gestionVenta.AgregarVenta();
-				}
-					break;
-				case "B": // Eliminar venta
-				case "b": {
-					salto.Limpiar(20); // saltos de linea
-					gestionVenta.EliminarVenta();
-				}
-					break;
-				case "C": // Consultar venta
-				case "c": {
-					salto.Limpiar(20); // saltos de linea
-					gestionVenta.ConsultarVenta();
-				}
-					break;
-				case "D": // Modificar venta
-				case "d": {
-					salto.Limpiar(20); // saltos de linea
-				}
-					break;
-				case "x": // Salir
-				case "X": {
-					salto.Limpiar(20); // saltos de linea
-					MostrarMenu();
-				}
-					break;
-				}
+			switch (opcion) {
+			case "A": // Nueva venta
+			case "a": {
 				isOpcionValida = true;
-			} else {
+				salto.Limpiar(20); // saltos de linea
+				gestionVenta.AgregarVenta();
+			}
+				break;
+			case "B": // Eliminar venta
+			case "b": {
+				isOpcionValida = true;
+				salto.Limpiar(20); // saltos de linea
+				gestionVenta.EliminarVenta();
+			}
+				break;
+			case "C": // Consultar venta
+			case "c": {
+				isOpcionValida = true;
+				salto.Limpiar(20); // saltos de linea
+				gestionVenta.ConsultarVenta();
+			}
+				break;
+			case "D": // Modificar venta
+			case "d": {
+				isOpcionValida = true;
+				salto.Limpiar(20); // saltos de linea
+				gestionVenta.ModificarVenta();
+			}
+				break;
+			case "x": // Salir
+			case "X": {
+				isOpcionValida = true;
+				salto.Limpiar(20); // saltos de linea
+				MostrarMenu();
+			}
+				break;
+			default: {
 				System.err.println("[Error]: Opción no existente. Vuelva a intentarlo.\n");
 				isOpcionValida = false;
+			}
+				break;
 			}
 		} while (isOpcionValida == false);
 	}

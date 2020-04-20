@@ -8,6 +8,10 @@ import components.LimpiarPantalla;
 /**
  * @author angel Clase hija de Operacion; "Venta"
  */
+/**
+ * @author angel
+ *
+ */
 public class Venta extends Operacion {
 	private String nombreCliente;
 	public DetalleVenta detalleVenta;
@@ -39,7 +43,9 @@ public class Venta extends Operacion {
 
 	}
 
-	// Setters y getters
+	/**
+	 * Setters y getters
+	 */
 	public String getNombreCliente() {
 		return nombreCliente;
 	}
@@ -78,7 +84,7 @@ public class Venta extends Operacion {
 		Producto productoVenta; // Objeto Producto
 		Producto productoRecorrido; // objeto para realizar recorridos
 
-		ArrayList<Producto> carrito = new ArrayList<Producto>(); // Lista <<Carrito>> de tipo Producto
+		ArrayList<Producto> carrito = new ArrayList<Producto>(); // Lista para almacenar productos
 		ArrayList<Integer> cantidadesCarrito = new ArrayList<Integer>(); // lista para almacenar cantidades
 
 		int cantidadObjetosPorAgregarAlCarrito = 0; // numero de productos por comprar
@@ -141,10 +147,10 @@ public class Venta extends Operacion {
 				if (cantidadObjetosPorAgregarAlCarrito > 0) { // verifico si el valor es un numero posistivo
 					isOpcionValida = true; // break loop
 				} else {
-					System.err.println("[Error]: El valor debe ser mayor que cero"); // mensaje de error
+					System.out.println("[Error]: El valor debe ser mayor que cero"); // mensaje de error
 				}
 			} catch (Exception e) {
-				System.err.println("[Error]: El valor debe ser un número\n"); // mensaje de error
+				System.out.println("[Error]: El valor debe ser un número\n"); // mensaje de error
 				leer.next();
 				continue;
 			}
@@ -166,10 +172,10 @@ public class Venta extends Operacion {
 						if (codigoIngresadoDeProducto > 0) { // si el valor es positivo
 							isOpcionValida = true; // loop breaked
 						} else {
-							System.err.println("[Error]: El valor debe ser mayor que cero"); // mensaje de error
+							System.out.println("[Error]: El valor debe ser mayor que cero"); // mensaje de error
 						}
 					} catch (Exception e) {
-						System.err.println("[Error]: El valor debe ser un número\n"); // mensaje de error
+						System.out.println("[Error]: El valor debe ser un número\n"); // mensaje de error
 						leer.next();
 						continue;
 					}
@@ -191,7 +197,7 @@ public class Venta extends Operacion {
 				}
 
 				if (isExistente == false) { // si el objeto no existe (es decir, si el valor por defecto no cambia)
-					System.err.println("\n[Error]: Producto " + codigoIngresadoDeProducto + " no existente."); // mensaje
+					System.out.println("\n[Error]: Producto " + codigoIngresadoDeProducto + " no existente."); // mensaje
 																												// de
 																												// error
 					isSuficiente = true; // cambio de variable para brincar la siguiente decisión
@@ -216,11 +222,11 @@ public class Venta extends Operacion {
 								if (cantidadProductosPorAgregar > 0) { // si el valor es positvo
 									isOpcionValida = true; // El valor es valido
 								} else {
-									System.err.println("[Error]: El valor debe ser mayor que cero\n"); // mensaje de
+									System.out.println("[Error]: El valor debe ser mayor que cero\n"); // mensaje de
 																										// error
 								}
 							} catch (Exception e) {
-								System.err.println("[Error]: El valor debe ser un número\n"); // mensaje de error
+								System.out.println("[Error]: El valor debe ser un número\n"); // mensaje de error
 								leer.next();
 								continue;
 							}
@@ -250,7 +256,7 @@ public class Venta extends Operacion {
 						}
 
 						if (isSuficiente == false) { // Verifica si hay suficientes productos para la venta
-							System.err.println(
+							System.out.println(
 									"[Error]: No hay suficientes existencias de: " + productoVenta.getNombreProducto());
 							isOpcionValida = false;
 						}
@@ -300,10 +306,10 @@ public class Venta extends Operacion {
 							"Cambio: $" + RealizarPago(detalleVenta.getImporte(subtotalAcumulado), totalPagado));
 					isOpcionValida = true;
 				} else {
-					System.err.println("[Error]: El valor debe ser mayor al total."); // mensaje de error
+					System.out.println("[Error]: El valor debe ser mayor al total."); // mensaje de error
 				}
 			} catch (Exception e) {
-				System.err.println("[Error]: El valor debe ser un numero."); // mensaje de error
+				System.out.println("[Error]: El valor debe ser un numero."); // mensaje de error
 				leer.next();
 				continue;
 			}
@@ -319,9 +325,71 @@ public class Venta extends Operacion {
 	/**
 	 * Método para eliminar venta
 	 */
+	@SuppressWarnings("resource")
 	public void EliminarVenta() {
-		Datos datos = new Datos();
-		datos.RegistroVentas();
+		Datos datos = new Datos(); // Objeto dato
+		Scanner leer = new Scanner(System.in); // Scanner
+		LimpiarPantalla salto = new LimpiarPantalla(); // Limpiar pantalla
+
+		int folioIngresado = 0; // Variable para folio ingresado por teclado
+		String opcion; // variable para opciones
+		boolean isOpcionValida = false; // variable para validar opciones ingresadas
+		boolean isVentaEncontrada = false; // Variable para confirma que una venta fue encontrada
+
+		datos.RegistroVentas(); // cargo datos por defecto
+		salto.Limpiar(20); // Limpio pantalla
+
+		System.out.println("----- ELIMINAR VENTA -----\n");
+
+		// Bucle para verificar que el usuario ingrese un valor valido
+		do {
+			System.out.print("Ingrese un folio: ");
+			try {
+				folioIngresado = leer.nextInt();// dato por teclado
+				isOpcionValida = true;// valido opcion ingresada
+			} catch (Exception e) {
+				System.out.println("[Error]: El valor debe ser un numero."); // mensaje de error
+				leer.next();
+				continue;
+			}
+		} while (isOpcionValida == false); // Si la opcion no es valida; repetir.
+
+		int ventaPorEliminarIndice = 0; // Indice para eleminar
+		// Bucle para encontrar una venta respecto al folio ingresado
+		for (int i = 0; i < datos.listaVentas.ventas.size(); i++) {
+			Venta ventaRecorrido = datos.listaVentas.ventas.get(i); // recorrido de ventas
+			if (folioIngresado == ventaRecorrido.detalleVenta.getFolioVenta()) {
+				ventaPorEliminarIndice = i;
+				System.out.println(ventaRecorrido.toString());
+				isVentaEncontrada = true;
+			}
+		}
+
+		// Si la venta es encontrada, cuestiona si se quiere eliminar
+		if (isVentaEncontrada == true) {
+			do {
+				// Mensaje de aviso
+				System.out.print("\n¿Desea eliminar esta venta? [S/N]\nEsta acción no se puede deshacer: ");
+				opcion = leer.next();
+				if (opcion.equalsIgnoreCase("S") || opcion.equalsIgnoreCase("N")) {
+					if (opcion.equalsIgnoreCase("S")) {
+						// si la respuesta fue si, procede a eliminarla
+						datos.listaVentas.ventas.remove(ventaPorEliminarIndice); // Elimino venta de la lista
+						System.out.println("\n> Venta eliminada.\n"); // mensaje de exito
+						Menu.GestionarVentas(); // regresa a menu de gestion
+					} else {
+						System.out.println("\nProceso cancelado.\n"); // mensaje de cancelacion
+						Menu.GestionarVentas();// regresa a menu
+					}
+				} else {
+					System.out.println("\n[Error]: Opción no válida"); // mensaje de error
+					isOpcionValida = false;
+				}
+			} while (isOpcionValida == false);
+		} else {
+			System.out.println("> Venta no encontrada.\n"); // mensaje de error
+			Menu.GestionarVentas(); // regresa a menu
+		}
 	}
 
 	/**
@@ -329,95 +397,200 @@ public class Venta extends Operacion {
 	 */
 	@SuppressWarnings("resource")
 	public void ConsultarVenta() {
-		Scanner leer = new Scanner(System.in);
-		Datos datos = new Datos();
-		LimpiarPantalla salto = new LimpiarPantalla();
+		Scanner leer = new Scanner(System.in); // Scanner
+		Datos datos = new Datos(); // Datos
+		LimpiarPantalla salto = new LimpiarPantalla(); // limpiar pantalla
 
-		int folioIngresado = 0;
-		String opcion;
-		boolean isOpcionValida = false;
-		boolean isMenuConsultaActivo = true;
-		boolean isEncontrada = false;
+		int folioIngresado = 0; // valor ingresado por teclado
+		String opcion; // opcion por teclado
+		boolean isOpcionValida = false; // para verificar si un valor por teclado es valido
+		boolean isMenuConsultaActivo = true; // para verificar si el menu sigue activo
+		boolean isEncontrada = false; // para verificar si la venta fue encontrada
 
-		datos.RegistroVentas();
+		datos.RegistroVentas(); // cargo datos por defecto
 
 		salto.Limpiar(20); // Limpio pantalla
 		do { // Bucle para seleccionar una opcion
 			System.out.println("\n----- CONSULTAR VENTA -----\n");
 			System.out.println("> Elija una opción: \n");
 			System.out.println("Consultar por folio [A]");
-			System.out.println("Consultar por empleado [B]");
-			System.out.println("Consultar todas las ventas [C]");
+			System.out.println("Consultar todas las ventas [B]");
 			System.out.println("Salir al menú de ventas [X]");
 
 			System.out.print("\nIngrese una opción: ");
 			opcion = leer.next();
 
 			// condición para verificar la opción ingresada
-			if (opcion.equalsIgnoreCase("A") || opcion.equalsIgnoreCase("B") || opcion.equalsIgnoreCase("C")
-					|| opcion.equalsIgnoreCase("D") || opcion.equalsIgnoreCase("X")) {
-				switch (opcion) {
-				case "A": // buscar por ID
-				case "a": {
-					salto.Limpiar(25); // saltos de linea
-					do {
-						System.out.print("Ingrese un folio: ");
-						try {
-							folioIngresado = leer.nextInt();
-							isOpcionValida = true;
-						} catch (Exception e) {
-							System.err.println("[Error]: El valor debe ser un numero"); // mensaje de error
-							leer.next();
-							continue;
-						}
-					} while (isOpcionValida == false);
+			switch (opcion) {
+			case "A": // buscar por folio
+			case "a": {
+				salto.Limpiar(25); // saltos de linea
+				folioIngresado = 0; // reseteo el folio ingresado
+				isEncontrada = false; // reseteo variable para verificar si una venta fue encontrada
+				System.out.println("----- CONSULTAR POR FOLIO -----\n");
+				do {
+					System.out.print("Ingrese un folio: ");
+					// validacion del tipo de dato
+					try {
+						folioIngresado = leer.nextInt();
+						isOpcionValida = true; // el valor es valido
+					} catch (Exception e) {
+						System.out.println("[Error]: El valor debe ser un numero"); // mensaje de error
+						leer.next();
+						continue;
+					}
+				} while (isOpcionValida == false);// si el valor no es valido, sigue el bucle
 
-					for (int i = 0; i < datos.listaVentas.ventas.size(); i++) {
-						Venta ventaRecorrido = datos.listaVentas.ventas.get(i);
-						if (ventaRecorrido.detalleVenta.getFolioVenta() == folioIngresado) {
-							System.out.println(ventaRecorrido.toString());
-							System.out.println("\n> Venta encontrada.");
-							isEncontrada = true;
-						}
+				for (int i = 0; i < datos.listaVentas.ventas.size(); i++) { // Recorrido de ventas
+					// Asigno a un objeto local, el objeto de un recorrido
+					Venta ventaRecorrido = datos.listaVentas.ventas.get(i);
+					/*
+					 * Si el folio de la venta recorrida coincide con el ingresado; muestra la venta
+					 */
+					if (ventaRecorrido.detalleVenta.getFolioVenta() == folioIngresado) {
+						System.out.println(ventaRecorrido.toString());
+						System.out.println("\n> Venta encontrada.");
+						isEncontrada = true; // fue encontrada
 					}
-					
-					if (isEncontrada == false) {
-						System.out.println("\n> Venta no encontrada.");
-					}
 				}
-					break;
-				case "B": // Buscar por empleado
-				case "b": {
-					salto.Limpiar(20); // saltos de linea
+
+				/*
+				 * Si la venta NO fue encontrada, muestra mensaje de error y se devuelve a
+				 * preguntar como es que se quiere consultar
+				 */
+				if (isEncontrada == false) {
+					System.out.println("\n> Venta no encontrada.");
 				}
-					break;
-				case "C": // Buscar todas
-				case "c": {
-					salto.Limpiar(20); // saltos de linea
-					System.out.println("> MOSTRANDO " + datos.listaVentas.ventas.size() + " venta(s).");
-					datos.listaVentas.MostrarVentas();
-					System.out.println("\n> MOSTRADAS " + datos.listaVentas.ventas.size() + " ventas(s).\n");
-				}
-					break;
-				case "x": // Salir
-				case "X": {
-					salto.Limpiar(20); // saltos de linea
-					Menu.GestionarVentas();
-				}
-					break;
-				}
-			} else {
-				System.err.println("[Error]: Opción no existente. Vuelva a intentarlo.\n");
-				isMenuConsultaActivo = true;
 			}
-		} while (isMenuConsultaActivo == true);
+				break;
+			case "B": // Buscar todas
+			case "b": {
+				salto.Limpiar(20); // saltos de linea
+				// Mensaje que indica que se estan mostrando las ventas
+				System.out.println("> MOSTRANDO " + datos.listaVentas.ventas.size() + " venta(s).");
+				// muestra todas las ventas a traves del metodo con un foreach en la clase de
+				// datos
+				datos.listaVentas.MostrarVentas();
+				// Mensaje que indica que se mostraron n cantidad de ventas
+				System.out.println("\n> MOSTRADAS " + datos.listaVentas.ventas.size() + " ventas(s).\n");
+			}
+				break;
+			case "x": // Salir
+			case "X": {
+				salto.Limpiar(20); // saltos de linea
+				Menu.GestionarVentas(); // regresar a la gestion de ventas
 
+				System.out.println("[Error]: Opción no existente. Vuelva a intentarlo.\n"); // mensaje de error
+				isMenuConsultaActivo = true; // sigue con el bucle
+			}
+				break;
+			default: {
+				System.out.println("[Error]: Opción no existente. Vuelva a intentarlo.\n"); // mensaje de error
+				isMenuConsultaActivo = true; // sigue con el bucle
+			}
+				break;
+			}
+		} while (isMenuConsultaActivo == true); // si el menu sigue, vuelve a mostrar las opciones de consulta
 	}
 
-	private float RealizarPago(float importe, float cantidadPagada) { // Método para realizar un pago
-		return cantidadPagada - importe;
+	/**
+	 * Método para modificar ventas
+	 */
+	@SuppressWarnings({ "resource", "unused" })
+	public void ModificarVenta() {
+		Datos datos = new Datos(); // datos
+		Scanner leer = new Scanner(System.in); // scanner
+		LimpiarPantalla salto = new LimpiarPantalla(); // limpiar pantalla
+		Venta ventaRecorrido = new Venta(), ventaPorModificar = new Venta(); // objetos de venta
+
+		int folioIngresado = 0; // folio ingresado por teclado
+		String nuevoNombre; // nombre ingresado por teclado
+		String opcion; // opcion por teclado
+		boolean isOpcionValida = false; // para verificar las opciones
+		boolean isVentaEncontrada = false; // si la venta fue encontrada
+
+		datos.RegistroVentas(); // cargo los datos
+		salto.Limpiar(20); // Limpio pantalla
+
+		System.out.println("----- MODIFICAR VENTA -----\n");
+
+		/*
+		 * Bucle para alamacenar/verificar las opciones
+		 */
+		do {
+			System.out.print("Ingrese un folio: ");
+			try {
+				folioIngresado = leer.nextInt(); // alamaceno un valor
+				isOpcionValida = true;
+			} catch (Exception e) {
+				System.out.println("[Error]: El valor debe ser un numero."); // mensaje de error
+				leer.next();
+				continue;
+			}
+		} while (isOpcionValida == false); // si la opcion no es valida, sigue con el bucle
+
+		// Bucle que realiza el recorrido de las ventas
+		for (int i = 0; i < datos.listaVentas.ventas.size(); i++) {
+			ventaRecorrido = datos.listaVentas.ventas.get(i); // asigno un objeto recorrido a uno local
+			// si el folio coincide con lo ingresado
+			if (folioIngresado == ventaRecorrido.detalleVenta.getFolioVenta()) {
+				ventaPorModificar = datos.listaVentas.ventas.get(i); // asigno el objeto a usar
+				System.out.println(ventaPorModificar.toString()); // muestra la venta asignada
+				isVentaEncontrada = true; // la venta fue encontrada
+			}
+		}
+
+		// si la venta NO fue encontrada, muestra un mensaje de error y devuelve al menu
+		if (isVentaEncontrada == false) {
+			System.out.println("\n> Venta no encontrada.\n");
+			Menu.GestionarVentas(); // regresa a menu de gestion
+		}
+
+		isOpcionValida = false; // reinicio la variable para opciones
+
+		// bucle que muestra un menu
+		do {
+			System.out.println("\n----- DATO POR MODIFICAR -----\n");
+			System.out.println("> Elija una opción\n");
+			System.out.println("Modificar nombre del cliente [A]");
+			System.out.print("\nIngrese una opción: ");
+			opcion = leer.next(); // valor por teclado
+
+			switch (opcion) {
+			case "A": // modificar nombre del cliente
+			case "a": {
+				System.out.print("Ingrese nuevo nombre: ");
+				nuevoNombre = leer.next(); // valor por teclado
+				ventaPorModificar.setNombreCliente(nuevoNombre); // setteo el nuevo nombre
+				System.out.println(ventaPorModificar.toString());// muestra de nuevo la venta modificada
+				System.out.println("\n> Venta modificada.");// mensaje de exito
+				salto.Limpiar(5); // limpio pantalla con 5 saltos de linea
+				Menu.GestionarVentas(); // muestro menu de gestion
+			}
+				break;
+			default: {
+				// mensaje de error
+				System.err.println("[Error]: Opción no existente. Vuelva a intentarlo.");
+				isOpcionValida = false;
+			}
+				break;
+			}
+
+		} while (isOpcionValida == false); // si la opcion no es valida, sigo con el bucle
 	}
 
+	/**
+	 * @param importe
+	 * @param cantidadPagada
+	 * @return Método que retorna el cambio
+	 */
+	private float RealizarPago(float importe, float cantidadPagada) {
+		return cantidadPagada - importe; // retorno el valor del cambio
+	}
+
+	/**
+	 * toString()
+	 */
 	@Override
 	public String toString() {
 		return super.toString() + "\n\t[Cliente]: " + nombreCliente + detalleVenta.toString();
