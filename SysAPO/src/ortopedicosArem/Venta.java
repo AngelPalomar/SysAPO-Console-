@@ -8,10 +8,6 @@ import components.LimpiarPantalla;
 /**
  * @author angel Clase hija de Operacion; "Venta"
  */
-/**
- * @author angel
- *
- */
 public class Venta extends Operacion {
 	private String nombreCliente;
 	public DetalleVenta detalleVenta;
@@ -43,21 +39,36 @@ public class Venta extends Operacion {
 
 	}
 
+	// Setters y getters
+
 	/**
-	 * Setters y getters
+	 * @return
 	 */
 	public String getNombreCliente() {
 		return nombreCliente;
 	}
 
+	/**
+	 * @param nombreCliente
+	 */
 	public void setNombreCliente(String nombreCliente) {
 		this.nombreCliente = nombreCliente;
 	}
 
+	/**
+	 * @return
+	 */
 	public DetalleVenta getDetalleVenta() {
 		return detalleVenta;
 	}
 
+	/**
+	 * @param folioVenta
+	 * @param productosVentaDetalle
+	 * @param cantidadProductos
+	 * @param subtotal
+	 * @param importe
+	 */
 	public void setDetalleVenta(int folioVenta, ArrayList<Producto> productosVentaDetalle,
 			ArrayList<Integer> cantidadProductos, float subtotal, float importe) {
 		detalleVenta.setFolioVenta(folioVenta);
@@ -298,7 +309,10 @@ public class Venta extends Operacion {
 				 * si el dinero dado es suficiente para pagar
 				 */
 				if (totalPagado >= detalleVenta.getImporte(subtotalAcumulado)) {
-					datosVenta.listaVentas.AnadirListaVentas(nuevaVenta); // Anadir la venta al registro
+					/*
+					 * <<Anadir la venta al registro>>
+					 */
+					datosVenta.listaVentas.AnadirListaVentas(nuevaVenta);
 					/*
 					 * Mensaje de cambio
 					 */
@@ -496,7 +510,7 @@ public class Venta extends Operacion {
 	/**
 	 * Método para modificar ventas
 	 */
-	@SuppressWarnings({ "resource", "unused" })
+	@SuppressWarnings({ "resource" })
 	public void ModificarVenta() {
 		Datos datos = new Datos(); // datos
 		Scanner leer = new Scanner(System.in); // scanner
@@ -589,7 +603,7 @@ public class Venta extends Operacion {
 	}
 
 	/**
-	 * toString()
+	 * toString() Sobreescritura
 	 */
 	@Override
 	public String toString() {

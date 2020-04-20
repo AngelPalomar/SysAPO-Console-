@@ -12,6 +12,9 @@ public class Menu {
 	private static LimpiarPantalla salto;
 	private static Venta gestionVenta;
 
+	/**
+	 * Constructor
+	 */
 	public Menu() {
 		leer = new Scanner(System.in);
 		salto = new LimpiarPantalla();

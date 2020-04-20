@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import interfaces.Impuesto;
 
 /**
- * @author angel
- * Clase para añadir un detalle de venta
+ * @author angel Clase para añadir un detalle de venta
  */
 public class DetalleVenta implements Impuesto {
 	private int folioVenta;
@@ -14,7 +13,7 @@ public class DetalleVenta implements Impuesto {
 	private ArrayList<Integer> cantidadProductos;
 	private float subtotal;
 	private float importe;
-	
+
 	public Datos datosProductos;
 
 	/**
@@ -29,8 +28,7 @@ public class DetalleVenta implements Impuesto {
 	 * @param productosVentaDetalle
 	 * @param cantidadProductos
 	 * @param subtotal
-	 * @param importe
-	 * Constructor compuesto
+	 * @param importe               Constructor compuesto
 	 */
 	public DetalleVenta(int folioVenta, ArrayList<Producto> productosVentaDetalle, ArrayList<Integer> cantidadProductos,
 			float subtotal, float importe) {
@@ -41,45 +39,88 @@ public class DetalleVenta implements Impuesto {
 		this.subtotal = subtotal;
 		this.importe = importe;
 	}
+
+	// Setters y getters
 	
-	//Setters y getters
+	/**
+	 * @return
+	 */
 	public int getFolioVenta() {
 		return folioVenta;
 	}
 
+	/**
+	 * @param folioVenta
+	 */
 	public void setFolioVenta(int folioVenta) {
 		this.folioVenta = folioVenta;
 	}
 
+	/**
+	 * @return
+	 */
 	public ArrayList<Producto> getProductosVentaDetalle() {
 		return productosVentaDetalle;
 	}
 
+	/**
+	 * @param productosVentaDetalle
+	 */
 	public void setProductosVentaDetalle(ArrayList<Producto> productosVentaDetalle) {
 		this.productosVentaDetalle = productosVentaDetalle;
 	}
 
+	/**
+	 * @return
+	 */
 	public ArrayList<Integer> getCantidadProductos() {
 		return cantidadProductos;
 	}
 
+	/**
+	 * @param cantidadProductos
+	 */
 	public void setCantidadProductos(ArrayList<Integer> cantidadProductos) {
 		this.cantidadProductos = cantidadProductos;
 	}
 
+	/**
+	 * @return
+	 */
 	public float getSubtotal() {
 		return subtotal;
 	}
 
+	/**
+	 * @param subtotal
+	 */
 	public void setSubtotal(float subtotal) {
 		this.subtotal = subtotal;
 	}
 
-	public float getImporte(float subtotal) { //get para calcular el importe total
+	/*
+	 * Sobrecarga de métodos del get del importe
+	 */
+	/**
+	 * @return
+	 */
+	public float getImporte() {
+		return importe;
+	}
+
+	// get para calcular el importe total
+	/**
+	 * @param subtotal
+	 * @return
+	 */
+	public float getImporte(float subtotal) {
 		importe = subtotal + (subtotal * iva);
 		return importe;
 	}
 
+	/**
+	 * @param importe
+	 */
 	public void setImporte(float importe) {
 		this.importe = importe;
 	}
